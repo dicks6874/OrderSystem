@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-md-3">
+        <ul class="nav nav-tabs left-tabs">
+            <% if (menuCatagatory) { %>
+            <% for ( var i = 0 ; i < menuCatagatory.length ; i++){ %>
+            <li class="nav-item">
+                <a class="nav-link <%= i === 0 ? 'active' : '' %>"
+                    data-target='#menu-<%= menuCatagatory[i].MenuCatagatoryId %>'
+                    data-toggle="tab"><%= menuCatagatory[i].Name %></a>
+            </li>
+            <% } %>
+            <% } %>
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <div class="container">
+            <div class="tab-content">
+                <% if (menuCatagatory) { %>
+                <% for ( var i = 0 ; i < menuCatagatory.length ; i++){ %>
+                <div class="tab-pane fade" id="menu-<%= menuCatagatory[i].MenuCatagatoryId %>" role="tabpanel"
+                    aria-labelledby="menu-<%= menuCatagatory[i].MenuCatagatoryId %>-tab">
+                    <div class="row menu-header"><%= menuCatagatory[i].Name %>
+                    </div>
+                    <% if (menuItem) { %>
+                    <% var items = menuItem.filter(function(value){ return value.MenuCatagatoryId==menuCatagatory[i].MenuCatagatoryId;}); %>
+                    <% items.forEach(function(item){ %>
+                    <div class="row menu-row">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 100px;">
+                                    <img class="menu-img" src="<%= item.Image %>" alt="sushi1" width="100" height="100">
+                                </td>
+                                <td>
+                                    <div style="height:100px">
+                                        <div class="menu-name row menu-item-row"><%= item.Name %>
+                                        </div>
+                                        <div class="menu-price row menu-item-row">
+                                            <div style="width: 100%;">
+                                                $<%= item.Price.toFixed(1) %>                                               
+                                                <button class="btn float-right custom-button"><i menuItemId="<%= item.MenuItemId %>" name="AddButton" class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></button>
+                                                <div style="width: 150px;margin-top: -3px;margin-right: 10px;" class="float-right">
+                                                    <input id="amount-<%= item.MenuItemId %>" type="number" value="1" min="1" max="1000" step="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <% }); %>
+                    <% } %>
+                </div>
+                <% } %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
