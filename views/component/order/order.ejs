@@ -1,2 +1,22 @@
 <div id="OrderContainer">
+    <% if (orderItem) { %>
+    <% for ( var i = 0 ; i < orderItem.length ; i++){ %>
+    <div class='row menu-row'>
+        <table style='width: 100%;'>
+            <tr>
+                <td style='width: 100px;'><img class='menu-img' src='' alt='sushi1' width='100' height='100'></td>
+                <td>
+                    <div style='height:100px'>
+                        <div class='menu-name row menu-item-row'>挪威三文魚(五片)</div>
+                        <div class='menu-price row menu-item-row'>
+                            <div style='width: 100%;'>$15.0 X 2 = 30.0<i class='fa fa-trash fa-lg float-right'
+                                    aria-hidden='true'></i></div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <% } %>
+    <% } %>
 </div>
